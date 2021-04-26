@@ -1,13 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
-const NotAccess = () => {
+const NotAccess = (props) => {
+  let history = useHistory();
+
+  const handleClick = () => {
+    props.handleAccess();
+    localStorage.removeItem("userinfo");
+    history.push("/");
+  };
+
   return (
     <div className="container">
       <div className="row">
         <div className="col">
           <h1>You are not access :c</h1>
-          <Link to="/login">Login</Link>
+          <button onClick={handleClick}>Iniciar Sesión</button>
         </div>
       </div>
     </div>

@@ -3,10 +3,11 @@ import { mykey, urlSignIn } from "../utils/firebase.js";
 import "../styles/views/Login.scss";
 import { useHistory } from "react-router";
 
-const Login = () => {
+const Login = (props) => {
+
   const [dataLogin, setDataLogin] = useState({
-    email: "",
-    password: "",
+    email: "lolitastest@gmail.com",
+    password: "lolas1234",
     returnSecureToken: true,
   });
 
@@ -34,6 +35,7 @@ const Login = () => {
       .then(function (data) {
         localStorage.setItem("userinfo", JSON.stringify(data));
         history.push("/");
+        props.handleAcces();
       })
       .catch(function (error) {
         console.warn("Something went wrong.", error);
