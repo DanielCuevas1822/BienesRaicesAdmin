@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { mykey, urlSignIn } from "../utils/firebase.js";
 import "../styles/views/Login.scss";
-import { useHistory } from "react-router";
 
 const Login = (props) => {
 
@@ -10,8 +9,6 @@ const Login = (props) => {
     password: "lolas1234",
     returnSecureToken: true,
   });
-
-  let history = useHistory();
 
   const handleChange = (e) => {
     setDataLogin({ ...dataLogin, [e.target.name]: e.target.value });
@@ -33,9 +30,8 @@ const Login = (props) => {
         return Promise.reject(response);
       })
       .then(function (data) {
-        localStorage.setItem("userinfo", JSON.stringify(data));
-        history.push("/");
-        props.handleAcces();
+        localStorage.setItem("userinfo", JSON.stringify(data));        
+        props.handleAccess();
       })
       .catch(function (error) {
         console.warn("Something went wrong.", error);

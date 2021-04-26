@@ -21,12 +21,8 @@ function App() {
     isLogIn ? setHaveAcces(true) : setHaveAcces(false);
   }, [haveAccess]);
 
-  const handleAcces = () => {
-    setHaveAcces(true);
-  };
-
   const handleAccess = () => {
-    setHaveAcces(false);
+    setHaveAcces(!haveAccess);
   };
 
   return (
@@ -57,7 +53,7 @@ function App() {
               </Switch>
             </React.Fragment>
           ) : (
-            <Login handleAcces={handleAcces} />
+            <Login handleAccess={handleAccess} />
           )}
         </React.Fragment>
       )}
