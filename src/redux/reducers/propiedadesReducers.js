@@ -4,7 +4,7 @@ import {
   DELETE_PROPIEDADES,
 } from "../actions/propiedadesActions";
 
-const propiedades_reducer = (state = {}, action) => {
+const propiedades_reducer = (state = [], action) => {
   switch (action.type) {
     case NEW_PROPIEDADES: {
       return state;
@@ -20,4 +20,4 @@ const propiedades_reducer = (state = {}, action) => {
   }
 };
 
-export default propiedades_reducer
+export default propiedades_reducer;
