@@ -4,7 +4,7 @@ import {
   DELETE_TESTIMONIALES,
 } from "../actions/testimonialesActions";
 
-const testimoniales_reducer = (state, action) => {
+const testimoniales_reducer = (state = {}, action) => {
   switch (action.type) {
     case NEW_TESTIMONIALES: {
       return state;
@@ -16,7 +16,7 @@ const testimoniales_reducer = (state, action) => {
       return state;
     }
     default:
-      break;
+      return state;
   }
 };
 
