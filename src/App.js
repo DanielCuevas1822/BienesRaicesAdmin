@@ -15,89 +15,13 @@ import Propiedades from "./views/Propiedades";
 import Blog from "./views/Blog";
 import Testimoniales from "./views/Testimoniales";
 import NotAccess from "./views/NotAccess";
+import { useInitialState, composeEnhancers } from "./hooks/useInitialState";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [haveAccess, setHaveAcces] = useState(false);
-  const [initialState, setinitialState] = useState({});
 
-  useEffect(() => {
-    Promise.all([
-      fetch(
-        "https://bienesraices-4eea1-default-rtdb.firebaseio.com/propiedades.json"
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          let propiedadesData = [];
-          for (var clave in data) {
-            let newid = { id: clave };
-            if (data.hasOwnProperty(clave)) {
-              let newinfo = data[clave];
-              let concatInfo = { ...newid, ...newinfo };
-              propiedadesData.push(concatInfo);
-            }
-          }
-          return {
-            propiedades: propiedadesData,
-          };
-        })
-        .catch((err) => {
-          console.log(err);
-        }),
-      fetch("https://bienesraices-4eea1-default-rtdb.firebaseio.com/blog.json")
-        .then((response) => response.json())
-        .then((data) => {
-          let notasData = [];
-          for (var clave in data) {
-            let newid = { id: clave };
-            if (data.hasOwnProperty(clave)) {
-              let newinfo = data[clave];
-              let blogInfo = { ...newid, ...newinfo };
-              notasData.push(blogInfo);
-            }
-          }
-          return {
-            blog: notasData,
-          };
-        })
-        .catch((err) => {
-          console.log(err);
-        }),
-      fetch(
-        "https://bienesraices-4eea1-default-rtdb.firebaseio.com/testimoniales.json"
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          let testimonialesData = [];
-          for (var clave in data) {
-            let newid = { id: clave };
-            if (data.hasOwnProperty(clave)) {
-              let newinfo = data[clave];
-              let testimonialesInfo = { ...newid, ...newinfo };
-              testimonialesData.push(testimonialesInfo);
-            }
-          }
-          return {
-            testimoniales: testimonialesData,
-          };
-        })
-        .catch((err) => {
-          console.log(err);
-        }),
-    ]).then((results) => {
-      let newresults = {};
-      results.map((item) => {
-        newresults = { ...newresults, ...item };
-        return null;
-      });
-      setinitialState(newresults);
-    });
-  }, []);
-
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__();
-
+  const initialState = useInitialState();
   const store = createStore(rootReducers, initialState, composeEnhancers);
 
   useEffect(() => {
