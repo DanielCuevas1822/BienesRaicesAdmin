@@ -2,3 +2,28 @@ main {
   padding-top: 50px;
   padding-bottom: 50px;
 }
+
+.list {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.card {
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+}
+
+.card-text {
+  min-height: 75px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn {
+  width: 100px;
+}
