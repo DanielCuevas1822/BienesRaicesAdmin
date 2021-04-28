@@ -19,3 +19,5 @@ const testimoniales_reducer = (state, action) => {
       break;
   }
 };
+
+export default testimoniales_reducer;

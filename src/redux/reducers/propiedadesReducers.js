@@ -19,3 +19,5 @@ const propiedades_reducer = (state, action) => {
       return state;
   }
 };
+
+export default propiedades_reducer;
