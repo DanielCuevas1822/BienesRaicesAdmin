@@ -1,14 +1,17 @@
 import React from "react";
+import "../styles/views/Home.scss";
 
 const Home = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col d-flex justify-content-center align-items-center">
-          <h1>Welcome!</h1>
+    <main>
+      <div className="container">
+        <div className="row">
+          <div className="home col d-flex justify-content-center align-items-center">
+            <h1>Bienvenido al administrador</h1>
+          </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

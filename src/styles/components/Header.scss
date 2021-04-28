@@ -1,0 +1,13 @@
+.navbar {
+  background-color: grey !important;  
+}
+li.nav-item {
+  a.nav-link {
+    color: white !important;
+  }
+}
+#navbarNav {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}

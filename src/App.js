@@ -11,6 +11,8 @@ import Blog from "./views/Blog";
 import Testimoniales from "./views/Testimoniales";
 import NotAccess from "./views/NotAccess";
 
+import "./styles/main.scss";
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [haveAccess, setHaveAcces] = useState(false);
