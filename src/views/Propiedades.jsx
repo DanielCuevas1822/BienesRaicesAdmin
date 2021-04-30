@@ -1,10 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
+import { delete_propiedades_action } from "../redux/actions/propiedadesActions";
 
 import "../styles/views/Propiedades.scss";
 
 const Propiedades = (props) => {
-  const { propiedades } = props;
+  const { propiedades, delete_propiedades_action } = props;
+
+  const handleDelete = (itemId) => {
+    delete_propiedades_action(itemId);
+  };
+
   return (
     <main>
       <div className="container">
@@ -20,8 +28,18 @@ const Propiedades = (props) => {
                   <h5 className="card-title">{item.nombre_propiedad}</h5>
                   <p className="card-text">{item.desc_corta}</p>
                   <div className="card-actions">
-                    <p className="btn btn-primary">Editar</p>
-                    <p className="btn btn-danger">Eliminar</p>
+                    <Link
+                      className="btn btn-primary"
+                      to={`/propiedades/edit/${item.id}`}
+                    >
+                      Editar
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="btn btn-danger"
+                    >
+                      Eliminar
+                    </button>
                   </div>
                 </div>
               </div>
@@ -37,4 +55,8 @@ const mapStatetoProps = (state) => ({
   propiedades: state.propiedades,
 });
 
-export default connect(mapStatetoProps)(Propiedades);
+const mapDispatchToProps = {
+  delete_propiedades_action,
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(Propiedades);
