@@ -16,6 +16,7 @@ import Blog from "./views/Blog";
 import Testimoniales from "./views/Testimoniales";
 import NotAccess from "./views/NotAccess";
 import { useInitialState, composeEnhancers } from "./hooks/useInitialState";
+import EditPropiedades from "./views/EditPropiedades";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +51,9 @@ function App() {
                   </Route>
                   <Route exact path="/propiedades">
                     <Propiedades />
+                  </Route>
+                  <Route exact path="/propiedades/edit/:id">
+                    <EditPropiedades />
                   </Route>
                   <Route exact path="/blog">
                     <Blog />
