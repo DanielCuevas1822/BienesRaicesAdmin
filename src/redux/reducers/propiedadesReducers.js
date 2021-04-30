@@ -13,7 +13,7 @@ const propiedades_reducer = (state = [], action) => {
       return state;
     }
     case DELETE_PROPIEDADES: {
-      return state;
+      return state.filter((item) => item.id !== action.payload);
     }
     default:
       return state;
