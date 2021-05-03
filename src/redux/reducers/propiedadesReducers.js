@@ -7,7 +7,7 @@ import {
 const propiedades_reducer = (state = [], action) => {
   switch (action.type) {
     case NEW_PROPIEDADES: {
-      return state;
+      return [...state, action.payload];
     }
     case UPDATE_PROPIEDADES: {
       return state.map((item) => {
