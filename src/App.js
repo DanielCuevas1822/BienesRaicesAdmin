@@ -17,6 +17,9 @@ import Testimoniales from "./views/Testimoniales";
 import NotAccess from "./views/NotAccess";
 import { useInitialState, composeEnhancers } from "./hooks/useInitialState";
 import EditPropiedades from "./views/EditPropiedades";
+import NewPropiedades from "./views/NewPropiedades";
+import NewBlog from "./views/NewBlog";
+import NewTestimonial from "./views/NewTestimonial";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,11 +58,20 @@ function App() {
                   <Route exact path="/propiedades/edit/:id">
                     <EditPropiedades />
                   </Route>
+                  <Route exact path="/propiedades/nueva_propiedad/">
+                    <NewPropiedades />
+                  </Route>
                   <Route exact path="/blog">
                     <Blog />
                   </Route>
+                  <Route exact path="/blog/nueva_entrada_blog/">
+                    <NewBlog />
+                  </Route>
                   <Route exact path="/testimoniales">
                     <Testimoniales />
+                  </Route>
+                  <Route exact path="/testimoniales/nuevo_testimonial/">
+                    <NewTestimonial />
                   </Route>
                   <Route exact path="/notaccess">
                     <NotAccess handleAccess={handleAccess} />
