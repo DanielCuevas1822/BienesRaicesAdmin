@@ -1,13 +1,26 @@
 .navbar {
-  background-color: grey !important;  
+  background-color: grey !important;
+}
+button.navbar-toggler {
+  background-color: white;
 }
 li.nav-item {
   a.nav-link {
     color: white !important;
   }
 }
-#navbarNav {
-  display: flex;
-  justify-content: right;
-  align-items: center;
+button.nav-link {
+  background-color: transparent;
+  border: none;
+  color: #ffffff !important;
+}
+@media (max-width: 840px) {
+  div.mynav {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    img {
+      width: 70%;
+    }
+  }
 }
