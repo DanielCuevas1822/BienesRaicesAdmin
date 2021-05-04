@@ -4,8 +4,6 @@ import { Link, useHistory } from "react-router-dom";
 
 import { delete_propiedades_action } from "../redux/actions/propiedadesActions";
 
-import "../styles/views/Propiedades.scss";
-
 const Propiedades = (props) => {
   const history = useHistory();
   const { propiedades, delete_propiedades_action } = props;
