@@ -15,7 +15,7 @@ export const useInitialState = () => {
             let newid = { id: clave };
             if (data.hasOwnProperty(clave)) {
               let newinfo = data[clave];
-              let concatInfo = { ...newid, ...newinfo };
+              let concatInfo = { ...newinfo, ...newid };              
               propiedadesData.push(concatInfo);
             }
           }
