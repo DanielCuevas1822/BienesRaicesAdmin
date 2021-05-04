@@ -7,9 +7,11 @@ const NewPropiedades = (props) => {
   const history = useHistory();
   const { new_propiedades_action } = props;
   const [newInfo, setNewInfo] = useState({
-    id: "",
-    id_propiedades: "",
-    imagen_propiedad: "",
+    imagen_propiedad: [
+      "https://firebasestorage.googleapis.com/v0/b/bienesraices-4eea1.appspot.com/o/slider%2Fdestacada2.jpg?alt=media&token=4238f00b-f319-44b8-9c4c-38d99a0fe5c7",
+      "https://firebasestorage.googleapis.com/v0/b/bienesraices-4eea1.appspot.com/o/slider%2Fdestacada.jpg?alt=media&token=0ded4b53-15e2-4201-800f-adeb68159940",
+      "https://firebasestorage.googleapis.com/v0/b/bienesraices-4eea1.appspot.com/o/slider%2Fdestacada3.jpg?alt=media&token=db56b5f7-cdb1-4ab5-bb39-e3b38a7d0c4b",
+    ],
     nombre_propiedad: "",
     desc_corta: "",
     desc_larga: "",
@@ -27,10 +29,38 @@ const NewPropiedades = (props) => {
     });
   };
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    new_propiedades_action(newInfo);
-    history.push("/propiedades");
+    const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
+    if (localUserinfo) {
+      await fetch(
+        `https://bienesraices-4eea1-default-rtdb.firebaseio.com/propiedades.json?auth=${localUserinfo.idToken}`,
+        {
+          method: "POST",
+          body: JSON.stringify(newInfo),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        }
+      )
+        .then(function (response) {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(response);
+        })
+        .then((data) => {
+          const newdata = { ...newInfo, id: data.name };
+          new_propiedades_action(newdata);
+          history.push("/propiedades");
+        })
+        .catch(function (error) {
+          console.warn("Something went wrong.", error);
+          history.push("/notaccess");
+        });
+    } else {
+      history.push("/notaccess");
+    }
   };
 
   return (
