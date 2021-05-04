@@ -1,16 +1,40 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { delete_propiedades_action } from "../redux/actions/propiedadesActions";
 
 import "../styles/views/Propiedades.scss";
 
 const Propiedades = (props) => {
+  const history = useHistory();
   const { propiedades, delete_propiedades_action } = props;
 
   const handleDelete = (itemId) => {
-    delete_propiedades_action(itemId);
+    const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
+    if (localUserinfo) {
+      fetch(
+        `https://bienesraices-4eea1-default-rtdb.firebaseio.com/propiedades/${itemId}.json?auth=${localUserinfo.idToken}`,
+        {
+          method: "DELETE",
+        }
+      )
+        .then(function (response) {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(response);
+        })
+        .then((data) => {
+          delete_propiedades_action(itemId);
+        })
+        .catch((error) => {
+          console.warn("Something went wrong.", error);
+          history.push("/notaccess");
+        });
+    } else {
+      history.push("/notaccess");
+    }
   };
 
   return (
