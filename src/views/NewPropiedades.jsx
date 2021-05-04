@@ -29,18 +29,15 @@ const NewPropiedades = (props) => {
     });
   };
 
-  const handleClick = async (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
     const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserinfo) {
-      await fetch(
+      fetch(
         `https://bienesraices-4eea1-default-rtdb.firebaseio.com/propiedades.json?auth=${localUserinfo.idToken}`,
         {
           method: "POST",
           body: JSON.stringify(newInfo),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
         }
       )
         .then(function (response) {
