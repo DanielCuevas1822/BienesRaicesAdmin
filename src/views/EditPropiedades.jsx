@@ -22,8 +22,32 @@ const EditPropiedades = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    update_propiedades_action(infoPropiedad);
-    history.push("/propiedades");
+    const localUserInfo = JSON.parse(localStorage.getItem("userinfo"));
+    if (localUserInfo) {
+      fetch(
+        `https://bienesraices-4eea1-default-rtdb.firebaseio.com/propiedades/${infoPropiedad.id}.json?auth=${localUserInfo.idToken}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(infoPropiedad),
+        }
+      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(response);
+        })
+        .then((data) => {
+          update_propiedades_action(data);
+          history.push("/propiedades");
+        })
+        .catch((error) => {
+          console.warn("Something went wrong.", error);
+          history.push("/notaccess");
+        });
+    } else {
+      history.push("/notaccess");
+    }
   };
 
   return (
