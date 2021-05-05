@@ -10,7 +10,30 @@ const Blog = (props) => {
   const { blog, delete_blog_action } = props;
 
   const handleDelete = (itemId) => {
-    delete_blog_action(itemId);
+    const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
+    if (localUserinfo) {
+      fetch(
+        `https://bienesraices-4eea1-default-rtdb.firebaseio.com/blog/${itemId}.json?auth=${localUserinfo.idToken}`,
+        {
+          method: "DELETE",
+        }
+      )
+        .then(function (response) {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(response);
+        })
+        .then((data) => {
+          delete_blog_action(itemId);
+        })
+        .catch((error) => {
+          console.warn("Something went wrong.", error);
+          history.push("/notaccess");
+        });
+    } else {
+      history.push("/notaccess");
+    }
   };
 
   return (
