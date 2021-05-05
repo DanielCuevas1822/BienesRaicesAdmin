@@ -10,7 +10,16 @@ const testimoniales_reducer = (state = [], action) => {
       return [...state, action.payload];
     }
     case UPDATE_TESTIMONIALES: {
-      return state;
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            nombre_testimonial: action.payload.nombre_testimonial,
+            testimonio: action.payload.testimonio,
+          };
+        }
+        return item;
+      });
     }
     case DELETE_TESTIMONIALES: {
       return state.filter((item) => item.id !== action.payload);
