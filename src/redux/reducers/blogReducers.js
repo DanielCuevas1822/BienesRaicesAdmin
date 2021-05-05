@@ -9,7 +9,7 @@ const blog_reducer = (state = [], action) => {
       return state;
     }
     case DELETE_BLOG: {
-      return state;
+      return state.filter((item) => item.id !== action.payload);
     }
     default:
       return state;
