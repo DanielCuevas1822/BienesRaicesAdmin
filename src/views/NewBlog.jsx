@@ -7,13 +7,12 @@ const NewBlog = (props) => {
   const history = useHistory();
   const { new_blog_action } = props;
   const [newInfo, setNewInfo] = useState({
-    creador: "Master",
-    descri_corta: "descripción corta de la nota",
-    descri_larga: "descripción larga de la nota",
+    creador: "",
+    descri_corta: "",
+    descri_larga: "",
     fecha_nota: "",
-    imagen_nota:
-      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/spider-man-remastered-ps5-esquire-4-1605525077.jpg?crop=0.524xw:1.00xh;0.298xw,0&resize=640:*",
-    nombre_nota: "Nombre de la nota",
+    imagen_nota: "",
+    nombre_nota: "",
   });
 
   const handleChange = (e) => {
