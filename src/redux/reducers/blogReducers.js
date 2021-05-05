@@ -3,7 +3,7 @@ import { NEW_BLOG, UPDATE_BLOG, DELETE_BLOG } from "../actions/blogActions";
 const blog_reducer = (state = [], action) => {
   switch (action.type) {
     case NEW_BLOG: {
-      return state;
+      return [...state, action.payload];
     }
     case UPDATE_BLOG: {
       return state;
