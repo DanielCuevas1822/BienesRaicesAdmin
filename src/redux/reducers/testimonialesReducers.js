@@ -7,7 +7,7 @@ import {
 const testimoniales_reducer = (state = [], action) => {
   switch (action.type) {
     case NEW_TESTIMONIALES: {
-      return state;
+      return [...state, action.payload];
     }
     case UPDATE_TESTIMONIALES: {
       return state;
