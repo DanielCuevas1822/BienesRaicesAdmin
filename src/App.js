@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import rootReducers from "./redux/reducers/rootReducers";
+import { useInitialState, composeEnhancers } from "./hooks/useInitialState";
 
 import "./styles/main.scss";
 
@@ -15,11 +16,12 @@ import Propiedades from "./views/Propiedades";
 import Blog from "./views/Blog";
 import Testimoniales from "./views/Testimoniales";
 import NotAccess from "./views/NotAccess";
-import { useInitialState, composeEnhancers } from "./hooks/useInitialState";
 import EditPropiedades from "./views/EditPropiedades";
 import NewPropiedades from "./views/NewPropiedades";
 import NewBlog from "./views/NewBlog";
 import NewTestimonial from "./views/NewTestimonial";
+import EditBlog from "./views/EditBlog";
+import EditTestimonial from "./views/EditTestimonial";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -67,11 +69,17 @@ function App() {
                   <Route exact path="/blog/nueva_entrada_blog/">
                     <NewBlog />
                   </Route>
+                  <Route exact path="/blog/edit/:id">
+                    <EditBlog />
+                  </Route>
                   <Route exact path="/testimoniales">
                     <Testimoniales />
                   </Route>
                   <Route exact path="/testimoniales/nuevo_testimonial/">
                     <NewTestimonial />
+                  </Route>
+                  <Route exact path="/testimoniales/edit/:id">
+                    <EditTestimonial />
                   </Route>
                   <Route exact path="/notaccess">
                     <NotAccess handleAccess={handleAccess} />
