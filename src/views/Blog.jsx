@@ -34,7 +34,7 @@ const Blog = (props) => {
                   <div className="card-actions">
                     <Link
                       className="btn btn-primary"
-                      to={`/testimoniales/edit/${item.id}`}
+                      to={`/blog/edit/${item.id}`}
                     >
                       Editar
                     </Link>
