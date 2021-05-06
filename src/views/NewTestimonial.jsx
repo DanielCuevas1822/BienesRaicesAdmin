@@ -22,7 +22,7 @@ const NewTestimonial = (props) => {
     const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserinfo) {
       fetch(
-        `https://bienesraices-4eea1-default-rtdb.firebaseio.com/testimoniales.json?auth=${localUserinfo.idToken}`,
+        `${process.env.REACT_APP_FIREBASE_URL}/testimoniales.json?auth=${localUserinfo.idToken}`,
         {
           method: "POST",
           body: JSON.stringify(newInfo),

@@ -12,7 +12,7 @@ const Testimoniales = (props) => {
     const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserinfo) {
       fetch(
-        `https://bienesraices-4eea1-default-rtdb.firebaseio.com/testimoniales/${itemId}.json?auth=${localUserinfo.idToken}`,
+        `${process.env.REACT_APP_FIREBASE_URL}/testimoniales/${itemId}.json?auth=${localUserinfo.idToken}`,
         {
           method: "DELETE",
         }

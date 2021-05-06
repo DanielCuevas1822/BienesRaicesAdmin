@@ -6,7 +6,7 @@ export const useInitialState = () => {
   useEffect(() => {
     Promise.all([
       fetch(
-        "https://bienesraices-4eea1-default-rtdb.firebaseio.com/propiedades.json"
+        `${process.env.REACT_APP_FIREBASE_URL}/propiedades.json`
       )
         .then((response) => response.json())
         .then((data) => {
@@ -26,7 +26,7 @@ export const useInitialState = () => {
         .catch((err) => {
           console.log(err);
         }),
-      fetch("https://bienesraices-4eea1-default-rtdb.firebaseio.com/blog.json")
+      fetch(`${process.env.REACT_APP_FIREBASE_URL}/blog.json`)
         .then((response) => response.json())
         .then((data) => {
           let notasData = [];
@@ -46,7 +46,7 @@ export const useInitialState = () => {
           console.log(err);
         }),
       fetch(
-        "https://bienesraices-4eea1-default-rtdb.firebaseio.com/testimoniales.json"
+        `${process.env.REACT_APP_FIREBASE_URL}/testimoniales.json`
       )
         .then((response) => response.json())
         .then((data) => {

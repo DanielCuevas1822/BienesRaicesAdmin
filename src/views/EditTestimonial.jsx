@@ -25,7 +25,7 @@ const EditTestimonial = (props) => {
     const localUserInfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserInfo) {
       fetch(
-        `https://bienesraices-4eea1-default-rtdb.firebaseio.com/testimoniales/${infoTestimonio.id}.json?auth=${localUserInfo.idToken}`,
+        `${process.env.REACT_APP_FIREBASE_URL}/testimoniales/${infoTestimonio.id}.json?auth=${localUserInfo.idToken}`,
         {
           method: "PATCH",
           body: JSON.stringify(infoTestimonio),

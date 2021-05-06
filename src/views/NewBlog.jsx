@@ -27,7 +27,7 @@ const NewBlog = (props) => {
     const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserinfo) {
       fetch(
-        `https://bienesraices-4eea1-default-rtdb.firebaseio.com/blog.json?auth=${localUserinfo.idToken}`,
+        `${process.env.REACT_APP_FIREBASE_URL}/blog.json?auth=${localUserinfo.idToken}`,
         {
           method: "POST",
           body: JSON.stringify(newInfo),

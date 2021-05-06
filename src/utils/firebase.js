@@ -1,5 +1,4 @@
-const mykey = "AIzaSyA4ngBMim0nBTvBwGwoIvrX4TS-j4sN9fA";
-const urlSignIn =
-  "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword";
+const mykey = `${process.env.REACT_APP_FIREBASE_KEY}`;
+const urlSignIn = `${process.env.REACT_APP_FIREBASE_URL_LOGIN}`;
 
 export { mykey, urlSignIn };
