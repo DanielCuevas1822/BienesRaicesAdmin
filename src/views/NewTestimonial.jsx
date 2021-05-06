@@ -8,8 +8,8 @@ const NewTestimonial = (props) => {
   const history = useHistory();
   const { new_testimoniales_action } = props;
   const [newInfo, setNewInfo] = useState({
-    nombre_testimonial: "Daniel Cuevas",
-    testimonio: "Super",
+    nombre_testimonial: "",
+    testimonio: "",
   });
   const handleChange = (e) => {
     setNewInfo({

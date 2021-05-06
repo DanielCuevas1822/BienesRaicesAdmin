@@ -5,8 +5,8 @@ import "../styles/views/Login.scss";
 const Login = (props) => {
 
   const [dataLogin, setDataLogin] = useState({
-    email: "lolitastest@gmail.com",
-    password: "lolas1234",
+    email: "",
+    password: "",
     returnSecureToken: true,
   });
 
