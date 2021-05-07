@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 import { delete_propiedades_action } from "../redux/actions/propiedadesActions";
 
@@ -11,25 +12,36 @@ const Propiedades = (props) => {
   const handleDelete = (itemId) => {
     const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserinfo) {
-      fetch(
-        `${process.env.REACT_APP_FIREBASE_URL}/propiedades/${itemId}.json?auth=${localUserinfo.idToken}`,
-        {
-          method: "DELETE",
-        }
-      )
-        .then(function (response) {
-          if (response.ok) {
-            return response.json();
-          }
-          return Promise.reject(response);
-        })
-        .then((data) => {
+      axios
+        .delete(
+          `${process.env.REACT_APP_FIREBASE_URL}/propiedades/${itemId}.json?auth=${localUserinfo.idToken}`
+        )
+        .then((response) => {
           delete_propiedades_action(itemId);
         })
         .catch((error) => {
           console.warn("Something went wrong.", error);
           history.push("/notaccess");
         });
+      // fetch(
+      //   `${process.env.REACT_APP_FIREBASE_URL}/propiedades/${itemId}.json?auth=${localUserinfo.idToken}`,
+      //   {
+      //     method: "DELETE",
+      //   }
+      // )
+      //   .then(function (response) {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
+      //     return Promise.reject(response);
+      //   })
+      //   .then((data) => {
+      //     delete_propiedades_action(itemId);
+      //   })
+      //   .catch((error) => {
+      //     console.warn("Something went wrong.", error);
+      //     history.push("/notaccess");
+      //   });
     } else {
       history.push("/notaccess");
     }
