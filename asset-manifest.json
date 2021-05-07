@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/BienesRaicesAdmin/static/css/main.b411bd9c.chunk.css",
-    "main.js": "/BienesRaicesAdmin/static/js/main.a8d47553.chunk.js",
-    "main.js.map": "/BienesRaicesAdmin/static/js/main.a8d47553.chunk.js.map",
-    "runtime-main.js": "/BienesRaicesAdmin/static/js/runtime-main.a3ee2da6.js",
-    "runtime-main.js.map": "/BienesRaicesAdmin/static/js/runtime-main.a3ee2da6.js.map",
+    "main.css": "/BienesRaicesAdmin/static/css/main.642d261b.chunk.css",
+    "main.js": "/BienesRaicesAdmin/static/js/main.81c2d0e4.chunk.js",
+    "main.js.map": "/BienesRaicesAdmin/static/js/main.81c2d0e4.chunk.js.map",
+    "runtime-main.js": "/BienesRaicesAdmin/static/js/runtime-main.de974504.js",
+    "runtime-main.js.map": "/BienesRaicesAdmin/static/js/runtime-main.de974504.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/BienesRaicesAdmin/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.bf748635.chunk.js": "/BienesRaicesAdmin/static/js/2.bf748635.chunk.js",
-    "static/js/2.bf748635.chunk.js.map": "/BienesRaicesAdmin/static/js/2.bf748635.chunk.js.map",
-    "static/js/3.64ff5c41.chunk.js": "/BienesRaicesAdmin/static/js/3.64ff5c41.chunk.js",
-    "static/js/3.64ff5c41.chunk.js.map": "/BienesRaicesAdmin/static/js/3.64ff5c41.chunk.js.map",
+    "static/js/2.59e26947.chunk.js": "/BienesRaicesAdmin/static/js/2.59e26947.chunk.js",
+    "static/js/2.59e26947.chunk.js.map": "/BienesRaicesAdmin/static/js/2.59e26947.chunk.js.map",
+    "static/js/3.c00782fe.chunk.js": "/BienesRaicesAdmin/static/js/3.c00782fe.chunk.js",
+    "static/js/3.c00782fe.chunk.js.map": "/BienesRaicesAdmin/static/js/3.c00782fe.chunk.js.map",
     "index.html": "/BienesRaicesAdmin/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/BienesRaicesAdmin/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.b411bd9c.chunk.css.map": "/BienesRaicesAdmin/static/css/main.b411bd9c.chunk.css.map",
-    "static/js/2.bf748635.chunk.js.LICENSE.txt": "/BienesRaicesAdmin/static/js/2.bf748635.chunk.js.LICENSE.txt",
-    "static/media/logo.69874b27.svg": "/BienesRaicesAdmin/static/media/logo.69874b27.svg"
+    "static/css/main.642d261b.chunk.css.map": "/BienesRaicesAdmin/static/css/main.642d261b.chunk.css.map",
+    "static/js/2.59e26947.chunk.js.LICENSE.txt": "/BienesRaicesAdmin/static/js/2.59e26947.chunk.js.LICENSE.txt",
+    "static/media/logo.8789a7c4.svg": "/BienesRaicesAdmin/static/media/logo.8789a7c4.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a3ee2da6.js",
+    "static/js/runtime-main.de974504.js",
     "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.bf748635.chunk.js",
-    "static/css/main.b411bd9c.chunk.css",
-    "static/js/main.a8d47553.chunk.js"
+    "static/js/2.59e26947.chunk.js",
+    "static/css/main.642d261b.chunk.css",
+    "static/js/main.81c2d0e4.chunk.js"
   ]
 }
