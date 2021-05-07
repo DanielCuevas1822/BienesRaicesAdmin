@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import { new_blog_action } from "../redux/actions/blogActions";
+import axios from "axios";
 
 const NewBlog = (props) => {
   const history = useHistory();
@@ -26,28 +27,42 @@ const NewBlog = (props) => {
     e.preventDefault();
     const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserinfo) {
-      fetch(
-        `${process.env.REACT_APP_FIREBASE_URL}/blog.json?auth=${localUserinfo.idToken}`,
-        {
-          method: "POST",
-          body: JSON.stringify(newInfo),
-        }
-      )
-        .then(function (response) {
-          if (response.ok) {
-            return response.json();
-          }
-          return Promise.reject(response);
-        })
-        .then((data) => {
-          const newdata = { ...newInfo, id: data.name };
+      axios
+        .post(
+          `${process.env.REACT_APP_FIREBASE_URL}/blog.json?auth=${localUserinfo.idToken}`,
+          JSON.stringify(newInfo)
+        )
+        .then((response) => {
+          const newdata = { ...newInfo, id: response.data.name };
           new_blog_action(newdata);
           history.push("/blog");
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.warn("Something went wrong.", error);
           history.push("/notaccess");
         });
+      // fetch(
+      //   `${process.env.REACT_APP_FIREBASE_URL}/blog.json?auth=${localUserinfo.idToken}`,
+      //   {
+      //     method: "POST",
+      //     body: JSON.stringify(newInfo),
+      //   }
+      // )
+      //   .then(function (response) {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
+      //     return Promise.reject(response);
+      //   })
+      //   .then((data) => {
+      //     const newdata = { ...newInfo, id: data.name };
+      //     new_blog_action(newdata);
+      //     history.push("/blog");
+      //   })
+      //   .catch(function (error) {
+      //     console.warn("Something went wrong.", error);
+      //     history.push("/notaccess");
+      //   });
     } else {
       history.push("/notaccess");
     }

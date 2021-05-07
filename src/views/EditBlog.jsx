@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { update_blog_action } from "../redux/actions/blogActions";
+import axios from "axios";
 
 const EditBlog = (props) => {
   const { update_blog_action } = props;
@@ -24,27 +25,40 @@ const EditBlog = (props) => {
     e.preventDefault();
     const localUserInfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserInfo) {
-      fetch(
-        `${process.env.REACT_APP_FIREBASE_URL}/blog/${infoblog.id}.json?auth=${localUserInfo.idToken}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify(infoblog),
-        }
-      )
+      axios
+        .patch(
+          `${process.env.REACT_APP_FIREBASE_URL}/blog/${infoblog.id}.json?auth=${localUserInfo.idToken}`,
+          JSON.stringify(infoblog)
+        )
         .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          return Promise.reject(response);
-        })
-        .then((data) => {
-          update_blog_action(data);
+          update_blog_action(response.data);
           history.push("/blog");
         })
         .catch((error) => {
           console.warn("Something went wrong.", error);
           history.push("/notaccess");
         });
+      // fetch(
+      //   `${process.env.REACT_APP_FIREBASE_URL}/blog/${infoblog.id}.json?auth=${localUserInfo.idToken}`,
+      //   {
+      //     method: "PATCH",
+      //     body: JSON.stringify(infoblog),
+      //   }
+      // )
+      //   .then((response) => {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
+      //     return Promise.reject(response);
+      //   })
+      //   .then((data) => {
+      //     update_blog_action(data);
+      //     history.push("/blog");
+      //   })
+      //   .catch((error) => {
+      //     console.warn("Something went wrong.", error);
+      //     history.push("/notaccess");
+      //   });
     } else {
       history.push("/notaccess");
     }
