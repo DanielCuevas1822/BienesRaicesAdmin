@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
+import axios from "axios";
 
 import { new_testimoniales_action } from "../redux/actions/testimonialesActions";
 
@@ -21,28 +22,42 @@ const NewTestimonial = (props) => {
     e.preventDefault();
     const localUserinfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserinfo) {
-      fetch(
-        `${process.env.REACT_APP_FIREBASE_URL}/testimoniales.json?auth=${localUserinfo.idToken}`,
-        {
-          method: "POST",
-          body: JSON.stringify(newInfo),
-        }
-      )
-        .then(function (response) {
-          if (response.ok) {
-            return response.json();
-          }
-          return Promise.reject(response);
-        })
-        .then((data) => {
-          const newdata = { ...newInfo, id: data.name };
+      axios
+        .post(
+          `${process.env.REACT_APP_FIREBASE_URL}/testimoniales.json?auth=${localUserinfo.idToken}`,
+          JSON.stringify(newInfo)
+        )
+        .then((response) => {
+          const newdata = { ...newInfo, id: response.data.name };
           new_testimoniales_action(newdata);
           history.push("/testimoniales");
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.warn("Something went wrong.", error);
           history.push("/notaccess");
         });
+      // fetch(
+      //   `${process.env.REACT_APP_FIREBASE_URL}/testimoniales.json?auth=${localUserinfo.idToken}`,
+      //   {
+      //     method: "POST",
+      //     body: JSON.stringify(newInfo),
+      //   }
+      // )
+      //   .then(function (response) {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
+      //     return Promise.reject(response);
+      //   })
+      //   .then((data) => {
+      //     const newdata = { ...newInfo, id: data.name };
+      //     new_testimoniales_action(newdata);
+      //     history.push("/testimoniales");
+      //   })
+      //   .catch(function (error) {
+      //     console.warn("Something went wrong.", error);
+      //     history.push("/notaccess");
+      //   });
     } else {
       history.push("/notaccess");
     }

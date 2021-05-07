@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { update_testimoniales_action } from "../redux/actions/testimonialesActions";
+import axios from "axios";
 
 const EditTestimonial = (props) => {
   const { update_testimoniales_action } = props;
@@ -24,27 +25,40 @@ const EditTestimonial = (props) => {
     e.preventDefault();
     const localUserInfo = JSON.parse(localStorage.getItem("userinfo"));
     if (localUserInfo) {
-      fetch(
-        `${process.env.REACT_APP_FIREBASE_URL}/testimoniales/${infoTestimonio.id}.json?auth=${localUserInfo.idToken}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify(infoTestimonio),
-        }
-      )
+      axios
+        .patch(
+          `${process.env.REACT_APP_FIREBASE_URL}/testimoniales/${infoTestimonio.id}.json?auth=${localUserInfo.idToken}`,
+          JSON.stringify(infoTestimonio)
+        )
         .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          return Promise.reject(response);
-        })
-        .then((data) => {
-          update_testimoniales_action(data);
+          update_testimoniales_action(response.data);
           history.push("/testimoniales");
         })
         .catch((error) => {
           console.warn("Something went wrong.", error);
           history.push("/notaccess");
         });
+      // fetch(
+      //   `${process.env.REACT_APP_FIREBASE_URL}/testimoniales/${infoTestimonio.id}.json?auth=${localUserInfo.idToken}`,
+      //   {
+      //     method: "PATCH",
+      //     body: JSON.stringify(infoTestimonio),
+      //   }
+      // )
+      //   .then((response) => {
+      //     if (response.ok) {
+      //       return response.json();
+      //     }
+      //     return Promise.reject(response);
+      //   })
+      //   .then((data) => {
+      //     update_testimoniales_action(data);
+      //     history.push("/testimoniales");
+      //   })
+      //   .catch((error) => {
+      //     console.warn("Something went wrong.", error);
+      //     history.push("/notaccess");
+      //   });
     } else {
       history.push("/notaccess");
     }
