@@ -45,6 +45,6 @@ $ npm start
 
 # URL 📌
 
-_https://danielcuevas1822.github.io/BienesRaicesAdmin/#/_
+_https://danielcuevas1822.github.io/BienesRaicesAdmin/_
 
 _With ❤️ DanielCuevas1822_
