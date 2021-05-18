@@ -1,6 +1,6 @@
 # Bienes Raices Admin
 
-_Admin page to [Bienes Raices]https://github.com/DanielCuevas1822/BienesRaices proyect made in React Js._
+_Admin page to [Bienes Raices](https://github.com/DanielCuevas1822/BienesRaices) proyect made in React Js. With this application we can edit, delete and add properties, blog notes and testimonials._
 
 _Concepts learned in this proyect:_
 
